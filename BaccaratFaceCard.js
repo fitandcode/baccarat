@@ -1,4 +1,5 @@
 const fs=require('fs')
+//
 const points=JSON.parse(fs.readFileSync('faceCardBackUp.txt',{encoding:'utf-8'}))
 let last=false
 const newShoe=require('./shoeWithFaceCard')
