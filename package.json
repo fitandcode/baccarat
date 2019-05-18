@@ -1,0 +1,22 @@
+{
+  "name": "baccarat",
+  "version": "1.0.0",
+  "description": "new edit another one",
+  "main": "baccarat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://fitandcode:Samky401@github.com/fitandcode/baccarat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fitandcode/baccarat/issues"
+  },
+  "homepage": "https://github.com/fitandcode/baccarat#readme",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
