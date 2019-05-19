@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/fitandcode/baccarat#readme",
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "worker-farm": "^1.7.0"
   }
 }
