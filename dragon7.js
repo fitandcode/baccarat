@@ -1,5 +1,5 @@
 const Baccarat=require('./baccarat')
-function dragon7(times,callback,targetTC=0){
+function dragon7(times,callback){
     let totalHands=0
     let bankerWin=0
     let playerWin=0

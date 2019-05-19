@@ -18,7 +18,7 @@ const table={
     13:0
 }
 
-function regular(times,callback,targetTC=0){
+function regularTC(times,callback){
 
     const resultsByTC={}
     let totalHands=0
@@ -26,6 +26,7 @@ function regular(times,callback,targetTC=0){
     for(let i=0;i<times;i++){
         let [results,burnCard]=Baccarat()
         RC=table[burnCard]
+        TC=0
         const hands=results.length
         // while(true){
             for(let hand=0;hand<hands;hand++){
@@ -80,13 +81,62 @@ function regular(times,callback,targetTC=0){
     callback(null,resultsByTC)
 }
 
+function regular(times,callback,targetTC=0){
+
+    let bankerWin=0
+    let playerWin=0
+    let tieWin=0
+    let totalHands=0
+
+    for(let i=0;i<times;i++){
+        let [results,burnCard]=Baccarat()
+
+        const hands=results.length
+        // while(true){
+        for(let hand=0;hand<hands;hand++){
+            const result=results[hand]
+            totalHands+=1
+
+
+
+            if(result.result==='b'){
+                bankerWin+=1
+            }else if(result.result==='t'){
+                tieWin+=1
+            }else{
+                playerWin+=1
+            }
+        }
+
+        // const result=results.shift()
+        // if(result){
+        //     totalHands+=1
+        //     if(result.result==='b'){
+        //         bankerWin+=1
+        //     }else if(result.result==='t'){
+        //         tieWin+=1
+        //     }else{
+        //         playerWin+=1
+        //     }
+        // }else{
+        //     break
+        // }
+        // }
+    }
+
+
+
+
+    callback(null,[(playerWin*2+tieWin)/totalHands-1,(bankerWin*1.95+tieWin)/totalHands-1])
+}
+
 function getTC(arr,table){
     // console.log(arr)
-    deck=arr[2]/52
-    if(deck<1){
-        deck=1
-    }
-    var temp=[...arr[0],...arr[1]]
+    let deck=arr[2]/52
+    // if(deck<1){
+    //     deck=1
+    // }
+    const temp=[...arr[0],...arr[1]]
     _.forEach(temp,function(item){
         RC+=table[item]
     })
@@ -96,4 +146,5 @@ function getTC(arr,table){
 
 }
 
-module.exports=regular
+exports.regularTC=regularTC
+exports.regular=regular
