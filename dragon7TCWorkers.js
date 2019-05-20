@@ -5,7 +5,7 @@ const _=require('lodash')
 
 
 let workerFarm = require('worker-farm')
-    , workers    = workerFarm(require.resolve('./regular'),['regular','regularTC'])
+    , workers    = workerFarm(require.resolve('./dragon7'),['dragon7','dragon7TC'])
     , ret        = 0
     , results    = []
     , numberWorkers=10
@@ -22,7 +22,7 @@ function customizer(objValue,srcValue){
 
 
 for (let i = 0; i < numberWorkers; i++) {
-    workers.regularTC(10000, function (err, result) {
+    workers.dragon7TC(10000, function (err, result) {
         // console.log(result)
         results.push(result)
         // console.log(JSON.stringify(result,null,2))

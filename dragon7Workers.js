@@ -5,7 +5,7 @@ const _=require('lodash')
 
 
 let workerFarm = require('worker-farm')
-    , workers    = workerFarm(require.resolve('./regular'),['regular','regularTC'])
+    , workers    = workerFarm(require.resolve('./dragon7'),['dragon7',])
     , ret        = 0
     , results    = []
     , numberWorkers=10
@@ -22,20 +22,15 @@ function customizer(objValue,srcValue){
 
 
 for (let i = 0; i < numberWorkers; i++) {
-    workers.regularTC(10000, function (err, result) {
+    workers.dragon7(300000, function (err, result) {
         // console.log(result)
         results.push(result)
         // console.log(JSON.stringify(result,null,2))
         if (++ret == numberWorkers){
             workerFarm.end(workers)
-            const mergedResults=_.mergeWith({},...results,customizer)
-            _.forEach(mergedResults,function(v,k,o){
-                const length=v.length
-                let [player,banker,frequency]=_.zip(...v)
-                o[k]=[_.sum(player)/length,_.sum(banker)/length,_.sum(frequency)/length]
-            })
+            let [player,banker]=_.zip(...results)
 
-            console.log(JSON.stringify(mergedResults,null,2))
+            console.log(_.sum(player)/numberWorkers,_.sum(banker)/numberWorkers)
             console.timeEnd('regular')
 
 

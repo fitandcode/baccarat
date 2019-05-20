@@ -22,7 +22,7 @@ function customizer(objValue,srcValue){
 
 
 for (let i = 0; i < numberWorkers; i++) {
-    workers.regular(100000, function (err, result) {
+    workers.regular(1000000, function (err, result) {
         // console.log(result)
         results.push(result)
         // console.log(JSON.stringify(result,null,2))
